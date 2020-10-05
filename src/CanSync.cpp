@@ -105,9 +105,11 @@ void CanSync::worker()
 					auto now = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
 					for (const auto& bt : bus_times)
 					{
-						if (bt.second + _can_timeout < now)
+						// raise an runtime error when the timeout is greater than 0
+						if (_can_timeout > 0) && (bt.second + _can_timeout < now)
 						{
-							throw std::runtime_error("CanSync: Bus timeout! Did not receive a CAN frame for 5 secs!");
+							std::string error << "CanSync: Bus timeout! Did not receive a CAN frame for " << _can_timeout <<  "milliseconds !" << std::endl;
+							throw std::runtime_error(error);
 						}
 					}
 					return _signal_data_queue.size() > 0;

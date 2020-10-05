@@ -125,7 +125,9 @@ int main(int argc, char** argv)
 		("can_bus", po::value<std::vector<std::string>>()->multitoken()->required(), "list of busids, CAN interfaces and DBC files")
 		("sample_rate", po::value<uint64_t>()->default_value(5000), "sample rate in microseconds")
 		("signal", po::value<std::vector<std::string>>()->multitoken(), "list of signals")
-		("can_timeout", po::value<uint64_t>()->default_value(200), "after can_timeout milliseconds without any frame received, the CanLogSyncServ will terminate")
+		("can_timeout", po::value<uint64_t>()->default_value(200), 
+			"after can_timeout milliseconds without any frame received, the CanLogSyncServ will terminate "
+			"0 disable the timeout, the last valid value is sent on")
 		("version,v", "print version");
 	auto print_usage =
 		[&desc]()

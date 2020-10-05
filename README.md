@@ -21,6 +21,8 @@ usage: CanLogSyncServ --config=<config_file> --can_bus=<<busid>,<iface>,<dbc>>..
   --can_bus arg             list of busids, CAN interfaces and DBC files
   --sample_rate arg (=5000) sample rate in microseconds
   --signal arg              list of signals
+  --can_timeout arg         after can_timeout milliseconds without any frame received, the CanLogSyncServ will terminate
+                      0 disable the timeout, the last valid value is sent on
 ```
 ## Options
   * `--help`
@@ -59,34 +61,34 @@ network.dbc:
 ```
 VERSION ""
 NS_ : 
-	NS_DESC_
-	CM_
-	BA_DEF_
-	BA_
-	VAL_
-	CAT_DEF_
-	CAT_
-	FILTER
-	BA_DEF_DEF_
-	EV_DATA_
-	ENVVAR_DATA_
-	SGTYPE_
-	SGTYPE_VAL_
-	BA_DEF_SGTYPE_
-	BA_SGTYPE_
-	SIG_TYPE_REF_
-	VAL_TABLE_
-	SIG_GROUP_
-	SIG_VALTYPE_
-	SIGTYPE_VALTYPE_
-	BO_TX_BU_
-	BA_DEF_REL_
-	BA_REL_
-	BA_DEF_DEF_REL_
-	BU_SG_REL_
-	BU_EV_REL_
-	BU_BO_REL_
-	SG_MUL_VAL_
+  NS_DESC_
+  CM_
+  BA_DEF_
+  BA_
+  VAL_
+  CAT_DEF_
+  CAT_
+  FILTER
+  BA_DEF_DEF_
+  EV_DATA_
+  ENVVAR_DATA_
+  SGTYPE_
+  SGTYPE_VAL_
+  BA_DEF_SGTYPE_
+  BA_SGTYPE_
+  SIG_TYPE_REF_
+  VAL_TABLE_
+  SIG_GROUP_
+  SIG_VALTYPE_
+  SIGTYPE_VALTYPE_
+  BO_TX_BU_
+  BA_DEF_REL_
+  BA_REL_
+  BA_DEF_DEF_REL_
+  BU_SG_REL_
+  BU_EV_REL_
+  BU_BO_REL_
+  SG_MUL_VAL_
 
 BS_:
 
@@ -203,8 +205,8 @@ There are also many other bindings for other languages to ZeroMQ and protobuf. F
   * [dbcppp v1.0.0](https://github.com/xR3b0rn/dbcppp)
   * [protobuf](https://github.com/protocolbuffers/protobuf)
   * zmq:
-  	* [cppzmq](https://github.com/zeromq/cppzmq)
-  	* [libzmq](https://github.com/zeromq/libzmq)
+    * [cppzmq](https://github.com/zeromq/cppzmq)
+    * [libzmq](https://github.com/zeromq/libzmq)
   
 ### Unix
 ```
