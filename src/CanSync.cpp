@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <sstream>
 #include <assert.h>
 #include "CanSync.h"
 
@@ -106,10 +107,11 @@ void CanSync::worker()
 					for (const auto& bt : bus_times)
 					{
 						// raise an runtime error when the timeout is greater than 0
-						if (_can_timeout > 0) && (bt.second + _can_timeout < now)
+						if ((_can_timeout > std::chrono::milliseconds{0}) && (bt.second + _can_timeout < now))
 						{
-							std::string error << "CanSync: Bus timeout! Did not receive a CAN frame for " << _can_timeout <<  "milliseconds !" << std::endl;
-							throw std::runtime_error(error);
+							std::ostringstream errorss;
+							errorss << "CanSync: Bus timeout! Did not receive a CAN frame for " << _can_timeout.count() <<  "milliseconds !" << std::endl;
+							throw std::runtime_error(errorss.str());
 						}
 					}
 					return _signal_data_queue.size() > 0;
